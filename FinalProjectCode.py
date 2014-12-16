@@ -76,7 +76,51 @@ def areaTwo():
 #def areaFour():
 
 
-
+def areaFive():
+  showInformation("Leaves cover the ground and a fire can be seen to the north. \nA coffin rests nearby.")
+  showInformation("You see two leaves on the ground, but you also can't stop thinking about the fire.")
+  showInformation("This leaves you with three options: \n1. Head north towards the fire. \n2. Pick up the red leaf. \n3. Pick up the green leaf.")
+  direction = choosePath(3)
+  if (direction == 1):
+    showInformation("You head north towards the fire. It looks so inviting.")
+    areaSix()
+  elif (direction == 2):
+    #rosecolored glasses function
+    #showpic
+    showInformation("You pick up the red leaf, and the world starts to look a little silly.")
+    areaThree()
+  elif (direction == 3):
+    #negative function
+    #showpic
+    showInformation("You pick up the green leaf, and the world turns stark.")
+    areaNine()
+    
+def areaSix():
+  showInformation("The fire nearby provides warmth against the cold air.")
+  showInformation("To the north of the fire lies a treasure trove. Will you pick up a piece of treasure? Y/N?")
+  string = raw_input("> ")
+  lcstr  = string.lower()
+  if (lcstr == 'y'):
+    showInformation("You take the treasure, and nothing appears to happen. \nYou head through the trap door.")
+    areaEight()
+  elif (lcstr == 'n'):
+    showInformation("You ignore the treasure, leaving yourself with other options.")
+    showInformation("1. The fire is attracting the attention of wildlife. You may put it out. \n2. You may go through the trap door. \n3. You may pass through and head west.")
+    direction = choosePath(3)
+    if (direction == 1):
+      #darkenUp
+      #showpic
+      showInformation("You can no longer find the trap door. Your only option is to head west.")
+      areaSeven()
+    elif (direction == 2):
+      showInformation("You open the trap door, and slowly climb in.")
+      areaFour()
+    elif (direction == 3):
+      showInformation("You head west, admiring the greenery.")
+      areaSeven()
+  else:
+    printNow("That's not a valid entry.")
+  return
 # Insert photos
 
 # Photo Functions
