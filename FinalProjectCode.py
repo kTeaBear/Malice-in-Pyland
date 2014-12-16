@@ -70,57 +70,35 @@ def areaTwo():
     showInformation("You take the purple pill, and the world looks a little strange. \nYou enter the tree.")
     areaEight()
     
-#def areaThree():
-
-
-#def areaFour():
-
-
-def areaFive():
-  showInformation("Leaves cover the ground and a fire can be seen to the north. \nA coffin rests nearby.")
-  showInformation("You see two leaves on the ground, but you also can't stop thinking about the fire.")
-  showInformation("This leaves you with three options: \n1. Head north towards the fire. \n2. Pick up the red leaf. \n3. Pick up the green leaf.")
-  direction = choosePath(3)
+def areaThree():
+  showInformation("There's a trap door directly in front of you.")
+  showInformation("Or you can walk further ahead and see what lies ahead.")
+  showInformation("1. Take the trap door. \n2. Keep walking. ")
+  direction = choosePath(2)
   if (direction == 1):
-    showInformation("You head north towards the fire. It looks so inviting.")
-    areaSix()
+    # Go back to areaOne
+    showInformation("You chose the trap door.")
+    areaOne()
   elif (direction == 2):
-    #rosecolored glasses function
-    #showpic
-    showInformation("You pick up the red leaf, and the world starts to look a little silly.")
-    areaThree()
-  elif (direction == 3):
-    #negative function
-    #showpic
-    showInformation("You pick up the green leaf, and the world turns stark.")
-    areaNine()
-    
-def areaSix():
-  showInformation("The fire nearby provides warmth against the cold air.")
-  showInformation("To the north of the fire lies a treasure trove. Will you pick up a piece of treasure? Y/N?")
-  string = raw_input("> ")
-  lcstr  = string.lower()
-  if (lcstr == 'y'):
-    showInformation("You take the treasure, and nothing appears to happen. \nYou head through the trap door.")
-    areaEight()
-  elif (lcstr == 'n'):
-    showInformation("You ignore the treasure, leaving yourself with other options.")
-    showInformation("1. The fire is attracting the attention of wildlife. You may put it out. \n2. You may go through the trap door. \n3. You may pass through and head west.")
-    direction = choosePath(3)
-    if (direction == 1):
-      #darkenUp
-      #showpic
-      showInformation("You can no longer find the trap door. Your only option is to head west.")
-      areaSeven()
-    elif (direction == 2):
-      showInformation("You open the trap door, and slowly climb in.")
-      areaFour()
-    elif (direction == 3):
-      showInformation("You head west, admiring the greenery.")
-      areaSeven()
-  else:
-    printNow("That's not a valid entry.")
-  return
+    # Walk into areaFour
+    showInformation("Keep walking, see what mistery lies ahead.")
+    areaFour()
+
+def areaFour():
+  showInformation("There's something shiny over yonder, go take a look and see what it is.")
+  showInformation("Oh wait, those are Kramer's Jewels next to that door")
+  showInformation("1. Take the trap door. \n2. Take Kramer's jewels. ")
+  direction = choosePath(2)
+  if (direction == 1):
+    # Go back to areaOne
+    showInformation("You chose the trap door.")
+    areaOne()
+  elif (direction == 2):
+    # Walk into areaFour
+    showInformation("Keep walking, see what mistery lies ahead.")
+    areaFour()
+
+
 # Insert photos
 
 # Photo Functions
@@ -150,3 +128,12 @@ def moreGreen(per):
   for pix in pixels:
     g = getGreen(pix)
     setGreen(pix, g + g * per * .01)
+    
+def vertMirror(picture):
+    for x in range(0, getWidth(picture) / 2):
+      for y in range(0, getHeight(picture)):
+        leftpix = getPixel(picture, x, y)
+        rightpix = getPixel(picture, getWidth(picture) - x - 1, y)
+        reflect = getColor(leftpix)
+        setColor(rightpix, reflect)
+    repaint(picture)
