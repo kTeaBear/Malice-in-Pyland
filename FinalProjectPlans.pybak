@@ -8,11 +8,13 @@ def areaOne():
 #Hallway leads to trap door.
 #Trap door leads to either area five or area three.
 #Red pill vs. blue pill
+#moreRed and moreBlue functions
 
 def areaTwo():
 #Hallway leads to trapdoor and tree.
 #Trap door leads to either area four or area eight.
 #Green pill vs. purple pill
+#moreGreen and morePurple function
 
 def areaThree():
 #No picture edit option for this area.
@@ -24,7 +26,7 @@ def areaFour():
 #Has jewels on the floor.
 #Trap door leads into area two, area six.
 #Option to take jewels. [If you go to area nine, critters in hanging coffins kill you for them.]
-#Taking jewels turn world gold and sen to area two.
+#Taking jewels uses vertical mirror function and send to area two.
 #Otherwise area six.
 
 def areaFive():
@@ -32,14 +34,14 @@ def areaFive():
 #A coffin rests in this area.
 #Trap door leads to area three or nine.
 #Or you can just walk to area six.
-#Green leaf = area three
-#Red leaf = area nine
+#Green leaf = area three (make negative)
+#Red leaf = area nine (rose colored glasses)
 
 def areaSix():
 #There is a fire to the south and treasure to the north.
 #You can walk to area five or area seven.
 #Trap door leads to area eight and four.
-#put out fire = trap door cannot be found and must go to area seven.
+#put out fire = trap door cannot be found and must go to area seven. [ darkenUp function]
 #If treasure taken, area eight through trap door.
 #Otherwise area four through trap door.
 
@@ -52,16 +54,16 @@ def areaEight():
 #Trap door leads to area six, or back to two.
 #You can walk to area nine.
 #There is an ocean to the west.
-#Drinking ocean water turns the world upside down and the trap door leads to area six.
+#Drinking ocean water turns the world doubleMirror and the trap door leads to area six.
 
 def areaNine():
 #There is a wall of hanging coffins.
-#If you have treasure from area four, you are killed.
+#If you have treasure from area four, you are killed. (black and white function)
 #You can walk along the coast to area eight.
 #Trap door leads to area five or four.
 #You see two open coffins, one higher than the other.
-#The higher one leads to area five.
-#The lower on leads to area four.
+#The higher one leads to area five. (vertical mirror function)
+#The lower on leads to area four. (sepia function)
 
 def areaTen():
 #Trap door lets you out of the game.
