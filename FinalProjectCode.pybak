@@ -143,6 +143,74 @@ def areaSix():
   else:
     printNow("That's not a valid entry.")
   return
+  
+def areaSeven():
+  #showpic
+  showInformation("You enter a labyrinthine hallway, turning a corner. \nWould you like to continue on or go back?")
+  showInformation("1. Continue on. \n2. Go back.")
+  direction = choosePath(2)
+  if (direction == 1):
+    showInformation("You have chosen to continue on.")
+    areaEight()
+  elif (direction ==2):
+    showInformation("You have chosen to return the way you came.")
+    areaSix()
+    
+def areaEight():
+  #showpic
+  showInformation("Looking around, you see an enclosed area, with a golden door. Next to that is a pathway up the coast.")
+  showInformation("A trap door stands open slightly south of a you, with the ocean directly to your west.")
+  showInformation("You have some hard choices to make, my dear. \n1. Walk up to the golden door. \n2. Go through the trap door. \n3. Walk up the coast. \n4. You're thirsty. Go to the ocean.")
+  direction = choosePath(4)
+  if (direction == 1):
+    showInformation("You walk up to the golden door, and try to push it open. \nIt appears you need a key of sorts.")
+    #global variable if key was picked up in area six
+    #if key = yes
+      #door opens
+      #area10
+    #if key = no
+      #door stays closed
+      #area8
+  elif (direction == 2):
+    showInformation("You go through the trap door quickly and quietly.")
+    areaTwo()
+  elif (direction == 3):
+    showInformation("You take a walk up the coast, admiring the scenery as you go.")
+    areaNine()
+  elif (direction == 4):
+    #doublemirror function
+    #showpic
+    showInformation("Drinking from the ocean might have been a bad idea. What was in that water?")
+    showInformation("You stumble away, tripping through the trap door.")
+    areaSix()
+
+def areaNine():
+  #showpic
+  showInformation("This is the creepiest area you've seen by far. Coffins cover a small cliffside, two appearing to be open.")
+  #if you have treasure from area four
+    #YOU KILLED MUHFUKKKAAA
+  #else:
+    showInformation("What would you like to do? \n1. Climb to the higher open coffin. \n2. Scramble to the lower coffin. \n3. Walk back down along the coast.")
+    direction = choosePath(3)
+    if (direction == 1):
+      #vertmirror
+      #showpic
+      showInformation("You expend too much energy getting to the higher coffin. Dizziness washes over you and you fall in.")
+      areaFive()
+    elif (direction == 2):
+      #sepia
+      #showpic
+      showInformation("Your vision blurs slightly as you make it up, crawling into the lower coffin.")
+      areaFour()
+    elif (direction == 3):
+      showInformation("You walk down the coastline, sticking close to the ocean.")
+      areaEight()
+      
+def areaTen():
+  #showpic
+  showInformation("You've made it to the end!")
+  showInformation("It's time for Miss Malice to go home.")
+  showInformation("We'll see you soon, I'm sure.")
 
 # Insert photos
 
