@@ -42,7 +42,6 @@ def startingArea():
 def areaOne():
   showInformation("At the end of the hallway, you see a trap door. \nOn top of the trap door are two pill packets.")
   showInformation("Which pill will you take? \n1. The red pill. \n2. The blue pill.")
-  #take integer
   direction = choosePath(2)
   if (direction == 1):
     #moreRed function
@@ -59,7 +58,7 @@ def areaTwo():
   showInformation("At the end of the hallway, you see an enclosed area with an oddly shaped tree. \nUnderneath the tree is a strangely shaped opening.")
   showInformation("Hanging in front of the opening are two packets of pills. Which will you take?")
   showInformation("1. The green pill. \n2. The purple pill.")
-  #take integer
+  direction = choosePath(2)
   if (direction == 1):
     #moreGreen function
     #showPic
@@ -71,17 +70,17 @@ def areaTwo():
     showInformation("You take the purple pill, and the world looks a little strange. \nYou enter the tree.")
     areaEight()
     
-def areaThree():
+#def areaThree():
 
 
-def areaFour():
+#def areaFour():
 
 
 
 # Insert photos
 
 # Photo Functions
-
+#
 # Makes the picture more blue.
 def moreBlue(per):
   for pix in pixels:
