@@ -4,8 +4,11 @@
 #               Luciano Avendano
 # 12/15/2014
 
-#Global variables
-
+# Global variables need to be set so functions
+# can access the objects stored in them.
+weapon = 0
+item = 0
+gameOver = 0
 # Main program
 
 def welcome():
@@ -83,12 +86,13 @@ def areaThree():
     # Walk into areaFour
     showInformation("Keep walking, see what mistery lies ahead.")
     areaFour()
-
+    
+a4=makePicture('/home/avendanl/My_SVN_Repo/CST205-Final-Project/trunk/Images/Area_Four.jpg')
 def areaFour():
   showInformation("There's something shiny over yonder, go take a look and see what it is.")
   showInformation("Oh wait, those are Kramer's Jewels next to that door")
-  showInformation("1. Take the trap door. \n2. Take Kramer's jewels. ")
-  direction = choosePath(2)
+  showInformation("1. Take the trap door. \n2. Keep walking. \n3. Take Kramer's Jewels.")
+  direction = choosePath(3)
   if (direction == 1):
     # Go back to areaOne
     showInformation("You chose the trap door.")
@@ -97,7 +101,12 @@ def areaFour():
     # Walk into areaFour
     showInformation("Keep walking, see what mistery lies ahead.")
     areaFour()
-
+  elif (direction == 3):
+    # Take jewels
+    showInformation("Oh no! You took Kramer's Jewels")
+    vertMirror(a4)
+    areaTwo()
+    
 def areaFive():
   showInformation("Leaves cover the ground and a fire can be seen to the north. \nA coffin rests nearby.")
   showInformation("You see two leaves on the ground, but you also can't stop thinking about the fire.")
@@ -250,3 +259,25 @@ def vertMirror(picture):
         reflect = getColor(leftpix)
         setColor(rightpix, reflect)
     repaint(picture)
+    
+# Once this file is loaded into JES, the game will start
+# automatically.
+welcome() # Display Welcome message
+while (gameOver != 1):
+  string = raw_input("> ")
+  lcstr = string.lower()
+  if (lcstr == "help"):
+    # Print the instructions for play
+    # help()
+  elif (lcstr == "start"):
+    # Start the Adventure
+    startingArea()
+  elif (lcstr == "exit"):
+    gameOver = 1
+    printNow("Game Over!")
+    printNow("The night is still young, let us play again.")
+    break
+  else:
+    printNow("You typed: " + string)
+    printNow("Try typing Help or Exit")
+  break    
