@@ -70,7 +70,40 @@ def areaTwo():
     #showPic
     showInformation("You take the purple pill, and the world looks a little strange. \nYou enter the tree.")
     areaEight()
+    
+def areaThree():
+
+
+def areaFour():
+
+
 
 # Insert photos
 
 # Photo Functions
+
+# Makes the picture more blue.
+def moreBlue(per):
+  for pix in pixels:
+    b = getBlue(pix)
+    setBlue(pix, b + b * per * .01)
+
+# Makes the picture more red.   
+def moreRed(per):
+  for pix in pixels:
+    r = getRed(pix)
+    setRed(pix, r + r * per * .01)
+
+# Makes the picture more purple.    
+def morePurple(per):
+  for pix in pixels:
+    r = getRed(pix)
+    b = getBlue(pix)
+    setRed(pix, r + r * per *.01)
+    setBlue(pix, b + b * per * .01)
+
+#Makes the picture more green.    
+def moreGreen(per):
+  for pix in pixels:
+    g = getGreen(pix)
+    setGreen(pix, g + g * per * .01)
