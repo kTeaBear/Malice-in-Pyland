@@ -70,11 +70,33 @@ def areaTwo():
     showInformation("You take the purple pill, and the world looks a little strange. \nYou enter the tree.")
     areaEight()
     
-#def areaThree():
+def areaThree():
+  showInformation("There's a trap door directly in front of you.")
+  showInformation("Or you can walk further ahead and see what lies ahead.")
+  showInformation("1. Take the trap door. \n2. Keep walking. ")
+  direction = choosePath(2)
+  if (direction == 1):
+    # Go back to areaOne
+    showInformation("You chose the trap door.")
+    areaOne()
+  elif (direction == 2):
+    # Walk into areaFour
+    showInformation("Keep walking, see what mistery lies ahead.")
+    areaFour()
 
-
-#def areaFour():
-
+def areaFour():
+  showInformation("There's something shiny over yonder, go take a look and see what it is.")
+  showInformation("Oh wait, those are Kramer's Jewels next to that door")
+  showInformation("1. Take the trap door. \n2. Take Kramer's jewels. ")
+  direction = choosePath(2)
+  if (direction == 1):
+    # Go back to areaOne
+    showInformation("You chose the trap door.")
+    areaOne()
+  elif (direction == 2):
+    # Walk into areaFour
+    showInformation("Keep walking, see what mistery lies ahead.")
+    areaFour()
 
 def areaFive():
   showInformation("Leaves cover the ground and a fire can be seen to the north. \nA coffin rests nearby.")
@@ -121,6 +143,7 @@ def areaSix():
   else:
     printNow("That's not a valid entry.")
   return
+
 # Insert photos
 
 # Photo Functions
@@ -150,3 +173,12 @@ def moreGreen(per):
   for pix in pixels:
     g = getGreen(pix)
     setGreen(pix, g + g * per * .01)
+    
+def vertMirror(picture):
+    for x in range(0, getWidth(picture) / 2):
+      for y in range(0, getHeight(picture)):
+        leftpix = getPixel(picture, x, y)
+        rightpix = getPixel(picture, getWidth(picture) - x - 1, y)
+        reflect = getColor(leftpix)
+        setColor(rightpix, reflect)
+    repaint(picture)
