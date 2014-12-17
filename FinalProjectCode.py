@@ -9,7 +9,7 @@
 weapon = 0
 items = []
 gameOver = 0
-imgPath='/home/avendanl/My_SVN_Repo/CSIT-CST205/CST205-Final-Project/trunk/'
+imgPath='/home/avendanl/My_SVN_Repo/CST205-Final-Project/trunk/'
 
 # Main program
 
@@ -19,7 +19,7 @@ def welcome():
 def choosePath(numOfPaths):
     choice = 0
     while (choice < 1 or choice > numOfPaths):        
-        choice = raw_input("> ")
+        choice = requestString("Enter your choice:")
         if (choice != '1' and choice != '2' and choice != '3' and choice != '4'):
             choice = 0
         elif (choice == '1' or choice == '2' or choice == '3' or choice == '4'):
@@ -112,7 +112,9 @@ def areaFour():
     show(hand)
     showInformation("You took Kramer's Hand! It might come in 'handy'.")
     vertMirror(a4)
-    items.append("hand")
+    item = "hand"
+    if item not in items:
+      items.append(item)
     areaTwo()
 
 a5=makePicture(imgPath + 'Images/Area_Five.jpg')        
@@ -141,11 +143,13 @@ def areaSix():
   show(a6)
   showInformation("The fire nearby provides warmth against the cold air.")
   showInformation("To the north of the fire lies a treasure trove. Will you pick up a piece of treasure? Y/N?")
-  string = raw_input("> ")
+  string = requestString("Enter Y/N")
   lcstr  = string.lower()
   if (lcstr == 'y'):
     showInformation("You take the treasure, and nothing appears to happen. \nYou head through the door next to the treasure.")
-    items.append("jewels")
+    item = "jewels"
+    if item not in items:
+      items.append(item)
     areaEight()
   elif (lcstr == 'n'):
     showInformation("You ignore the treasure, leaving yourself with other options. \n1. The fire is attracting the attention of wildlife. You may put it out. \n2. You may go through the trap door. \n3. You may pass through and head west.")
@@ -177,26 +181,28 @@ def areaSeven():
     showInformation("You have chosen to return the way you came.")
     areaSix()
     
-door=makePicture(imgPath + 'Images/goldenDoor.jpg')    
+door=makePicture(imgPath + 'Images/goldenDoor.jpg')
+a8=makePicture(imgPath + 'Images/Area_Eight.jpg')    
 def areaEight():
-  show(a8)
-  showInformation("Looking around, you see an enclosed area, with a golden door. Next to that is a pathway up the coast.")
-  showInformation("A trap door stands open slightly south of a you, with the ocean directly to your west.")
+  global items
+  show(door)
+  showInformation("Looking around, you see an enclosed area, with a golden door. Next to that is a pathway up the coast. \nA trap door stands open slightly south of a you, with the ocean directly to your west.")
   showInformation("You have some hard choices to make, my dear. \n1. Walk up to the golden door. \n2. Go through the trap door. \n3. Walk up the coast. \n4. You're thirsty. Go to the ocean.")
   direction = choosePath(4)
   if (direction == 1):
     showInformation("You walk up to the golden door, and try to push it open. \nIt appears you need a key of sorts.")
-    printNow("You currently have these items on hand:")
-    printNow("")
     for item in items:
-      printNow("%s" % s)
-    #global variable if key was picked up in area six
-    #if key = yes
-      #door opens
-      #area10
-    #if key = no
-      #door stays closed
-      #area8
+      printNow(item)
+    useItem = requestString("What item would you like to use to open the door?")
+    if useItem == "hand":
+      showInformation("The hand fit perfectly in the key hole! Nice job!")
+      areaTen()
+    elif useItem == "jewels":
+      showInformation("Jewels are not going to get the door open. Try again!")
+      areaEight()
+    else:
+      showInformation("You dont have that item")
+      areaEight()  
   elif (direction == 2):
     showInformation("You go through the trap door quickly and quietly.")
     areaTwo()
@@ -204,23 +210,22 @@ def areaEight():
     showInformation("You take a walk up the coast, admiring the scenery as you go.")
     areaNine()
   elif (direction == 4):
-    #doublemirror function
-    #showpic
     showInformation("Drinking from the ocean might have been a bad idea. What was in that water?")
     showInformation("You stumble away, tripping through the trap door.")
+    doubleMirror(a8)
     areaSix()
 
 a9=makePicture(imgPath + 'Images/Area_Nine-HangingCoffins.jpg')
 def areaNine():
+  global items
   show(a9)
   showInformation("This is the creepiest area you've seen by far. Coffins cover a small cliffside, two appearing to be open. But wait! MooFakka jumps out demanding some kind of payment if you want to get home.")
   # if you have treasure from area six
-  if (item == 2):
-    # Use your jewels to pay MooFakka so he can send you home
-    if (item == 2):
-      showInformation("You currently have some jewels from the treasure trove")
-      showInformation("Would you like to give them to MooFakka? Y/N")
-      string = raw_input("> ")
+  if items:
+    if items[0] == "jewels":
+      # Use your jewels to pay MooFakka so he can send you home
+      showInformation("You currently have some jewels from the treasure trove \nWould you like to give them to MooFakka? Y/N")
+      string = requestString("Enter Y/N")
       lcStr = string.lower()
       if (lcStr == 'y'):
         showInformation("\"As a beast of my word, I shall send you back home where you came from...")
@@ -230,18 +235,19 @@ def areaNine():
         areaOne()
       else:
         printNow("That is not a valid choice. Y/N")
+    else:
+      showInformation("MooFakka will only accept items of value!")
+      areaOne()    
   else:
     showInformation("What would you like to do? \n1. Climb to the higher open coffin. \n2. Scramble to the lower coffin. \n3. Walk back down along the coast.")
     direction = choosePath(3)
     if (direction == 1):
-      #vertmirror
-      #showpic
       showInformation("You expend too much energy getting to the higher coffin. Dizziness washes over you and you fall in.")
+      vertMirror(a9)
       areaFive()
     elif (direction == 2):
-      #sepia
-      #showpic
       showInformation("Your vision blurs slightly as you make it up, crawling into the lower coffin.")
+      betterBnW(a9)
       areaFour()
     elif (direction == 3):
       showInformation("You walk down the coastline, sticking close to the ocean.")
@@ -253,11 +259,35 @@ def areaTen():
   show(a10)
   showInformation("You've made it to the end! \nIt's time for Miss Malice to go home. \nWe'll see you soon, I'm sure.")
   gameOver = 1
-  
+       
 # Insert photos
-
+def doubleMirror(picture):
+  for x in range(0, getWidth(picture) / 2):
+    for y in range(0, getHeight(picture)):
+      leftpix = getPixel(picture, x, y)
+      rightpix = getPixel(picture, getWidth(picture) - x - 1, y)
+      reflect = getColor(leftpix)
+      setColor(rightpix, reflect)
+  for x in range(0, getWidth(picture)):
+     for y in range(0, getHeight(picture) / 2 ):
+      pix = getPixel(picture, x, y)
+      color = getColor(pix)
+      reflect = getPixel(picture, x, getHeight(picture) - 1 - y)
+      setColor(reflect, color)
+  repaint(picture)
+  
 # Photo Functions
-#
+# better black and white
+def betterBnW(picture):
+  pixels = getPixels(picture)
+  for pix in pixels:
+    r= getRed(pix)
+    g = getGreen(pix)
+    b = getBlue(pix)
+    luminance = (r * 0.299 + g * 0.587 + b * 0.114)
+    setColor(pix, makeColor(luminance))
+  repaint(picture)
+  
 # Makes the picture more blue.
 def moreBlue(picture):
   pixels = getPixels(picture)
