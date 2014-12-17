@@ -7,14 +7,14 @@
 # Global variables need to be set so functions
 # can access the objects stored in them.
 weapon = 0
-item = 0
+items = []
 gameOver = 0
 imgPath='/home/avendanl/My_SVN_Repo/CSIT-CST205/CST205-Final-Project/trunk/'
 
 # Main program
 
 def welcome():
-  showInformation("Welcome to Py-Land Miss Malice! \nWe are pleased to have you here, whether you want to be here or not. \nIf you complete our labyrinth, I suppose we MIGHT let you go. \nAre you ready to start? \nNo? Good thing that was a rhetorical question! Let's go! \nType start to begin this journey.")
+  showInformation("Welcome to Py-Land Miss Malice! \n\nWe are pleased to have you here, whether you want to be here or not. If you complete our labyrinth, I suppose we MIGHT let you go. \nAre you ready to start? \nNo? Good thing that was a rhetorical question! Let's go!")
   
 def choosePath(numOfPaths):
     choice = 0
@@ -91,10 +91,10 @@ def areaThree():
     showInformation("Keep walking, see what mistery lies ahead.")
     areaFour()
     
-a4=makePicture(imgpath + 'Images/Area_Four.jpg')
-hand=makePicture(imgpath + 'Images/KramersHand.png')
+a4=makePicture(imgPath + 'Images/Area_Four.jpg')
+hand=makePicture(imgPath + 'Images/KramersHand.png')
 def areaFour():
-  global item
+  global items
   show(a4)
   showInformation("There's something shiny over yonder, go take a look and see what it is. \nOh wait, its Kramer's Hand statue next to that door.")
   showInformation("1. Take the trap door. \n2. Keep walking. \n3. Take Kramer's Hand.")
@@ -112,10 +112,10 @@ def areaFour():
     show(hand)
     showInformation("You took Kramer's Hand! It might come in 'handy'.")
     vertMirror(a4)
-    item = 1
+    items.append("hand")
     areaTwo()
 
-a5=makePicture(imgpath + 'Images/Area_Five.jpg')        
+a5=makePicture(imgPath + 'Images/Area_Five.jpg')        
 def areaFive():
   show(a5)
   showInformation("Leaves cover the ground and a fire can be seen to the north. \nA coffin rests nearby. \nYou see two leaves on the ground, but you also can't stop thinking about the fire.")
@@ -135,9 +135,9 @@ def areaFive():
     makeNegative(a5)
     areaNine()
 
-a6=makePicture(imgpath + 'Images/Area_Six.jpg')    
+a6=makePicture(imgPath + 'Images/Area_Six.jpg')    
 def areaSix():
-  global item
+  global items
   show(a6)
   showInformation("The fire nearby provides warmth against the cold air.")
   showInformation("To the north of the fire lies a treasure trove. Will you pick up a piece of treasure? Y/N?")
@@ -145,7 +145,7 @@ def areaSix():
   lcstr  = string.lower()
   if (lcstr == 'y'):
     showInformation("You take the treasure, and nothing appears to happen. \nYou head through the door next to the treasure.")
-    item = 2
+    items.append("jewels")
     areaEight()
   elif (lcstr == 'n'):
     showInformation("You ignore the treasure, leaving yourself with other options. \n1. The fire is attracting the attention of wildlife. You may put it out. \n2. You may go through the trap door. \n3. You may pass through and head west.")
@@ -164,7 +164,7 @@ def areaSix():
     printNow("That's not a valid entry.")
   return
 
-a7=makePicture(imgpath + 'Images/Area_Seven.jpg')    
+a7=makePicture(imgPath + 'Images/Area_Seven.jpg')    
 def areaSeven():
   show(a7)
   showInformation("You enter a labyrinthine hallway, turning a corner. \nWould you like to continue on or go back?")
@@ -177,7 +177,7 @@ def areaSeven():
     showInformation("You have chosen to return the way you came.")
     areaSix()
     
-door=makePicture(imgpath + 'Images/goldenDoor.jpg')    
+door=makePicture(imgPath + 'Images/goldenDoor.jpg')    
 def areaEight():
   show(a8)
   showInformation("Looking around, you see an enclosed area, with a golden door. Next to that is a pathway up the coast.")
@@ -185,7 +185,11 @@ def areaEight():
   showInformation("You have some hard choices to make, my dear. \n1. Walk up to the golden door. \n2. Go through the trap door. \n3. Walk up the coast. \n4. You're thirsty. Go to the ocean.")
   direction = choosePath(4)
   if (direction == 1):
-    showInformation("You walk up to the golden door, and try to push it open. \nIt appears you need a key of sorts or maybe the fingers from a hand statue will do.")
+    showInformation("You walk up to the golden door, and try to push it open. \nIt appears you need a key of sorts.")
+    printNow("You currently have these items on hand:")
+    printNow("")
+    for item in items:
+      printNow("%s" % s)
     #global variable if key was picked up in area six
     #if key = yes
       #door opens
@@ -206,7 +210,7 @@ def areaEight():
     showInformation("You stumble away, tripping through the trap door.")
     areaSix()
 
-a9=makePicture(imgpath + 'Images/Area_Nine-HangingCoffins.jpg')
+a9=makePicture(imgPath + 'Images/Area_Nine-HangingCoffins.jpg')
 def areaNine():
   show(a9)
   showInformation("This is the creepiest area you've seen by far. Coffins cover a small cliffside, two appearing to be open. But wait! MooFakka jumps out demanding some kind of payment if you want to get home.")
@@ -243,7 +247,7 @@ def areaNine():
       showInformation("You walk down the coastline, sticking close to the ocean.")
       areaEight()
 
-a10=makePicture(imgpath + 'Images/Area_Ten.jpg')            
+a10=makePicture(imgPath + 'Images/Area_Ten.jpg')            
 def areaTen():
   global gameOver
   show(a10)
@@ -333,20 +337,15 @@ def darkenUp(picture):
 welcome() # Display Welcome message
 
 while (gameOver != 1):
-  string = raw_input("> ")
+  string = requestString("Type start to begin your journey.")
   lcstr = string.lower()
-  #if (lcstr == "help"):
-    # Print the instructions for play
-    # help()
   if (lcstr == "start"):
     # Start the Adventure
     startingArea()
   elif (lcstr == "exit"):
     gameOver = 1
-    printNow("Game Over!")
-    printNow("The night is still young, let us play again.")
+    showInformation("Game Over! \nThe night is still young, let us play again.")
     break
   else:
-    printNow("You typed: " + string)
-    printNow("Try typing Help or Exit")
-  break    
+    showInformation("You typed: " + string + "\nTry typing Start or Exit ")
+    
