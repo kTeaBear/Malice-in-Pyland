@@ -1,0 +1,14 @@
+I DON’T KNOW HOW TO START A SCRIPT SO SAY HI IN YOUR OWN WAY.
+Basically going over the powerpoint:
+Objective:
+The objective for this game was pretty simple.  We intended to great a text based game incorporating both sound and image manipulation. We ended up skipping over the sound portion so that we could focus more on the images.  In almost every area of the map, ‘Malice’ has a choice between two or more objects. These objects can change the world around her. For example, in the first area, she picks between colored pills. Whichever pill she chooses changes the color of the area, as well as what area she will be able to go to next. Picture functions from our image portfolio were used to implement this effect, as well as a couple new ones.
+Approach and Mapping:
+This project all started with a map.  I (Luciano) created a base black and white map to create a general idea, which Caitlin followed up on. She first colored it in with crayons, numbering it multiple times to get it right.  Once the map was finalized, she went over it with photoshop to clean everything up.  At this point, we started coding by setting up comments for what would happen each section, using showInformation() for the majority of it.  After the text part of it was done, image functions and photos were added in. While each of us had a hang in both, I worked mostly on the image functions while Caitlin worked on the text game statements.
+Results:
+We were able to implement much of what we learned in this class: string processing, image manipulation, list building….etc.  The main goal was to build a successful and creative text game, and I think we were able to do so.  The game works quite well, and I’m proud of how much we have accomplished.
+Demonstration:
+(Briefly show the powerpoint, but go through a bit of the game with them if you can, since you are screen casting it.)
+IGNORE TOP THREE
+SHOW GIT REPO and explain separation
+We used GIT for the majority of our work in this class, and for all of our work for this final project.  Initial, we sorted everything into separate categories: images, image manipulation, project planning, project code, and the powerpoint.  GitHub has been a valuable resource to this class, and will likely be just as valuable in the future.
+SAY BYEBYE.
